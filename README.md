@@ -1,36 +1,63 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# QuizLab IF - Frontend
 
-## Getting Started
+Este é o repositório do frontend do **QuizLab IF**, uma plataforma de quizzes gamificados em tempo real desenvolvida para o Instituto Federal de Sergipe (IFS).
 
-First, run the development server:
+## 🚀 Sobre o Projeto
+
+O **QuizLab IF** tem como objetivo proporcionar uma experiência interativa e gamificada para professores e alunos da Rede Federal. O projeto foca em:
+
+- **Tempo Real:** Interatividade instantânea durante os quizzes.
+- **Gamificação:** Estilo "Kahoot" para engajamento dos alunos.
+- **Escalabilidade:** Funciona perfeitamente em dispositivos móveis e desktops.
+- **Open-Source:** Código aberto para colaboração.
+
+Este repositório contém a aplicação web desenvolvida com **Next.js**. O backend (API) é desenvolvido separadamente em AdonisJS.
+
+## 🛠️ Stack Tecnológica
+
+- **Framework:** Next.js (App Router)
+- **Estilização:** Tailwind CSS + shadcn/ui
+- **Linguagem:** TypeScript
+- **Comunicação:** WebSockets (Socket.io) e REST JSON
+
+## 🎨 Identidade Visual (Padrão IFS)
+
+O projeto segue as cores oficiais do IFS:
+- **Verde Principal:** `#32A041`
+- **Vermelho Destaque:** `#C8191E`
+
+---
+
+## 🚦 Iniciando o Desenvolvimento
+
+Primeiro, instale as dependências:
+
+```bash
+npm install
+```
+
+Em seguida, inicie o servidor de desenvolvimento:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Você pode começar a editar a página modificando o arquivo `app/page.tsx`. A página será atualizada automaticamente conforme você edita.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## 🏗️ Estrutura do Projeto
 
-## Learn More
+O QuizLab é dividido em dois repositórios principais:
+- `/quizlab-api` -> Backend AdonisJS.
+- `/quizlab-app` -> Frontend Next.js (este repositório).
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Saiba Mais
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+Para aprender mais sobre o Next.js, confira os seguintes recursos:
 
-## Deploy on Vercel
+- [Documentação do Next.js](https://nextjs.org/docs) - aprenda sobre os recursos e API do Next.js.
+- [Aprenda Next.js](https://nextjs.org/learn) - um tutorial interativo.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
