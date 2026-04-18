@@ -81,18 +81,25 @@ export default function LoginPage() {
         <div className="col-span-1 lg:col-span-6 p-8 lg:p-20 flex flex-col justify-center bg-card">
           <div className="max-w-md mx-auto w-full space-y-16">
             
-            <header className="space-y-4 text-center lg:text-left">
-              <div className="lg:hidden flex justify-center mb-8">
+            <header className="space-y-6 text-center lg:text-left">
+              {/* Mobile Header */}
+              <div className="lg:hidden flex flex-col items-center gap-4 mb-2">
                  <div className="bg-primary p-3 rounded-[1.5rem] shadow-2xl shadow-primary/40">
                     <UserCircle className="w-8 h-8 text-white" />
                  </div>
+                 <span className="inline-block px-3 py-1 bg-primary/10 text-primary rounded-full text-[9px] font-black tracking-[0.2em] uppercase border border-primary/20">
+                    Educação Digital
+                 </span>
               </div>
-              <h3 className="font-heading text-3xl lg:text-4xl font-black text-foreground tracking-tighter">
-                Seja bem-vindo
-              </h3>
-              <p className="text-on-surface-variant font-semibold text-lg opacity-70">
-                Entre com suas credenciais institucionais.
-              </p>
+              
+              <div className="space-y-2">
+                <h3 className="font-heading text-3xl lg:text-4xl font-black text-foreground tracking-tighter">
+                  Seja bem-vindo
+                </h3>
+                <p className="text-on-surface-variant font-semibold text-lg opacity-70">
+                  Entre com suas credenciais institucionais.
+                </p>
+              </div>
             </header>
 
             {/* Error Message */}
@@ -195,16 +202,16 @@ export default function LoginPage() {
                   </>
                 )}
               </Button>
-            </form>
 
-            <footer className="pt-12 border-t border-border/40 text-center">
-              <p className="text-sm text-on-surface-variant font-bold opacity-60">
-                Novo por aqui?{" "}
-                <Link href="#" className="text-primary font-black hover:underline transition-colors hover:text-primary/70">
-                  Faça cadastro
-                </Link>
-              </p>
-            </footer>
+              <div className="text-center pt-2">
+                <p className="text-sm text-on-surface-variant font-bold opacity-60">
+                  Novo por aqui?{" "}
+                  <Link href="#" className="text-primary font-black hover:underline transition-colors hover:text-primary/70">
+                    Faça cadastro
+                  </Link>
+                </p>
+              </div>
+            </form>
           </div>
         </div>
       </div>
