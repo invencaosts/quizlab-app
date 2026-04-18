@@ -53,11 +53,3 @@ O QuizLab é dividido em dois repositórios principais:
 - `/quizlab-app` -> Frontend Next.js (este repositório).
 
 ---
-
-## Saiba Mais
-
-Para aprender mais sobre o Next.js, confira os seguintes recursos:
-
-- [Documentação do Next.js](https://nextjs.org/docs) - aprenda sobre os recursos e API do Next.js.
-- [Aprenda Next.js](https://nextjs.org/learn) - um tutorial interativo.
-
