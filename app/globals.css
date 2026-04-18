@@ -7,9 +7,9 @@
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-sans);
-  --font-mono: var(--font-geist-mono);
-  --font-heading: var(--font-sans);
+  --font-sans: var(--font-outfit);
+  --font-mono: var(--font-outfit);
+  --font-heading: var(--font-sora);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -46,38 +46,49 @@
   --radius-2xl: calc(var(--radius) * 1.8);
   --radius-3xl: calc(var(--radius) * 2.2);
   --radius-4xl: calc(var(--radius) * 2.6);
+  --color-surface-container-lowest: var(--surface-container-lowest);
+  --color-surface-container-low: var(--surface-container-low);
+  --color-surface-container-highest: var(--surface-container-highest);
+  --color-surface-variant: var(--surface-variant);
+  --color-on-surface-variant: var(--on-surface-variant);
 }
 
 :root {
-  /* Surface Scale (White to Dim) */
-  --background: oklch(1 0 0); /* #ffffff */
-  --foreground: oklch(0.25 0.02 145); /* Very dark forest for text */
-  --card: oklch(1 0 0);
+  /* Surface Scale (Softer Contrast) */
+  --background: oklch(0.96 0.005 145); /* #f0f2f0 - Surface Dim (Mais contraste) */
+  --foreground: oklch(0.2 0.02 145);
+  --card: oklch(1 0 0); /* #ffffff - Surface Container Lowest */
   --card-foreground: oklch(0.25 0.02 145);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.25 0.02 145);
 
   /* Brand Colors */
-  --primary: oklch(0.384 0.171 145.42); /* #006b1f - Institutional Green */
+  --primary: oklch(0.611 0.16 142.53); /* #32A041 - Institutional Green */
   --primary-foreground: oklch(0.98 0.01 145);
   
-  --secondary: oklch(0.43 0.05 145); /* #40673f - Forest Depth */
+  --secondary: oklch(0.43 0.05 145); /* Forest Depth */
   --secondary-foreground: oklch(0.98 0.01 145);
 
-  --tertiary: oklch(0.48 0.22 25.1); /* #ba0816 - Action Red */
+  --tertiary: oklch(0.50 0.19 28.0); /* #C8191E - Action Red */
   
-  --muted: oklch(0.95 0.01 145); /* SurfaceContainer Low */
+  --muted: oklch(0.95 0.01 145);
   --muted-foreground: oklch(0.45 0.05 145);
   
-  --accent: oklch(0.88 0 0); /* #dadada - Surface Dim */
+  --accent: oklch(0.88 0 0);
   --accent-foreground: oklch(0.3 0.05 145);
 
-  --destructive: oklch(0.48 0.22 25.1);
-  --destructive-foreground: oklch(0.98 0.01 25);
+  --destructive: oklch(0.50 0.19 28.0);
+  --destructive-foreground: oklch(0.98 0.01 28);
+
+  --surface-container-lowest: oklch(1 0 0);
+  --surface-container-low: oklch(0.98 0.01 145);
+  --surface-container-highest: oklch(0.92 0.01 145);
+  --surface-variant: oklch(0.94 0.02 145);
+  --on-surface-variant: oklch(0.45 0.05 145);
 
   --border: oklch(0.92 0.01 145);
   --input: oklch(0.92 0.01 145);
-  --ring: oklch(0.384 0.171 145.42);
+  --ring: oklch(0.611 0.16 142.53);
 
   /* Charts & Others */
   --chart-1: oklch(0.384 0.171 145.42);
@@ -113,4 +124,7 @@
   html {
     @apply font-sans;
   }
+}
+.bg-academic-pattern {
+  background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%2332A041' fill-opacity='0.15' fill-rule='evenodd'%3E%3Cpath d='M15 15h2v2h-2zM35 15h1v1h-1zM10 50h1v1h-1zM90 60h2v2h-2zM110 30h1v1h-1zM50 110h2v2h-2zM20 90h1v1h-1zM70 20h1v1h-1zM80 80h1v1h-1z'/%3E%3Cpath d='M45 45l2 2-2 2-2-2zM95 15l2 2-2 2-2-2zM15 105l2 2-2 2-2-2z'/%3E%3Cpath d='M60 40c2.2 0 4-1.8 4-4s-1.8-4-4-4-4 1.8-4 4 1.8 4 4 4zm0 2c-3.3 0-6-2.7-6-6s2.7-6 6-6 6 2.7 6 6-2.7 6-6 6z'/%3E%3Cpath d='M60 31v10h2V31h-2zM55 36h10v2H55v-2z'/%3E%3Cpath d='M30 80l4 8h-8z'/%3E%3Ccircle cx='90' cy='100' r='5'/%3E%3Cpath d='M10 10l5 5M15 10l-5 5' stroke='%2332A041' stroke-opacity='0.15' stroke-width='1.5'/%3E%3C/g%3E%3C/svg%3E");
 }
