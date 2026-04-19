@@ -1,6 +1,17 @@
 import Cookies from 'js-cookie'
 
-const BASE_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333/api/v1'
+const getBaseUrl = () => {
+  if (typeof window !== "undefined") {
+    const hostname = window.location.hostname;
+    // Se não for localhost, assume que estamos acessando via IP na rede local
+    if (hostname !== "localhost" && hostname !== "127.0.0.1") {
+      return `http://${hostname}:3333/api/v1`;
+    }
+  }
+  return process.env.NEXT_PUBLIC_API_URL || "http://localhost:3333/api/v1";
+};
+
+const BASE_URL = getBaseUrl();
 
 interface RequestOptions extends RequestInit {
   auth?: boolean
