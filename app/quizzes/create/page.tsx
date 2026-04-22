@@ -10,8 +10,10 @@ import {
   FileText,
   Globe2,
   Lock,
-  AlertCircle
+  AlertCircle,
+  HelpCircle
 } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { Sidebar } from "@/components/Sidebar";
 import { useAuth } from "@/contexts/AuthContext";
 import { apiFetch } from "@/lib/api";
