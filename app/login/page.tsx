@@ -51,9 +51,15 @@ export default function LoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
-      if (response.token) {
-        Cookies.set("quizlab_token", response.token, { expires: 30 });
-        router.push("/dashboard");
+      console.log("Login response:", response);
+      const token = response.token || response.data?.token;
+
+      if (token) {
+        Cookies.set("quizlab_token", token, { expires: 30 });
+        window.location.href = "/";
+      } else {
+        console.error("Token não encontrado na resposta:", response);
+        setError("Erro ao processar login. Token não recebido.");
       }
     } catch (err: any) {
       if (err.status === 500) {

@@ -182,9 +182,14 @@ export default function RegisterPage() {
         body: JSON.stringify(formData),
       });
 
-      if (response.data?.token) {
-        Cookies.set("quizlab_token", response.data.token, { expires: 30 });
-        router.push("/dashboard");
+      const token = response.token || response.data?.token;
+
+      if (token) {
+        Cookies.set("quizlab_token", token, { expires: 30 });
+        window.location.href = "/";
+      } else {
+        console.error("Token não encontrado na resposta de cadastro:", response);
+        setError("Erro ao processar cadastro. Token não recebido.");
       }
     } catch (err: any) {
       // Handle Validation Errors from Backend (status 422)
