@@ -138,7 +138,7 @@ export default function ProfilePage() {
         <div className="max-w-3xl mx-auto space-y-10 lg:space-y-12">
           
           <form onSubmit={handleSave} className="space-y-10">
-            <div className="bg-card lg:border border-surface-container-highest lg:rounded-[3rem] rounded-none p-8 lg:p-10 space-y-10 shadow-sm lg:shadow-none min-h-screen lg:min-h-0">
+            <div className="bg-card lg:border border-surface-container-highest lg:rounded-[4rem] rounded-none p-8 lg:p-12 space-y-10 shadow-sm lg:shadow-none min-h-screen lg:min-h-0 pb-24 lg:pb-12">
               
               {/* Top Header Desktop/Mobile Unified */}
               <div className="flex items-center justify-between">
@@ -238,30 +238,37 @@ export default function ProfilePage() {
             </section>
 
             {/* Security Group */}
-            <section className="space-y-6">
-              <div className="flex items-center gap-3">
-                <div className="w-1 h-4 bg-primary rounded-full" />
-                <h4 className="text-xs font-black uppercase tracking-widest text-on-surface-variant/40">Segurança</h4>
+            <section className="space-y-8 pt-6 border-t border-surface-container-highest/50">
+              <div className="flex items-center gap-4">
+                <div className="w-1.5 h-6 bg-destructive rounded-full" />
+                <div className="space-y-1">
+                  <h4 className="text-sm font-black uppercase tracking-widest text-foreground">Segurança</h4>
+                  <p className="text-[10px] font-bold text-on-surface-variant/40 uppercase">Alterar sua senha de acesso</p>
+                </div>
               </div>
-              <div className="relative group">
-                <Lock className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant/30 group-focus-within:text-primary transition-colors" />
-                <input 
-                  type={showPassword ? "text" : "password"}
-                  placeholder="Nova senha (opcional)"
-                  value={formData.password}
-                  onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFieldChange("password", e.target.value)}
-                  className="w-full h-14 pl-14 pr-14 bg-surface-container-highest/30 border-2 border-transparent focus:border-primary/20 focus:bg-background rounded-2xl text-sm font-bold transition-all outline-none"
-                />
-                <button
-                  type="button"
-                  onMouseDown={(e: React.MouseEvent) => {
-                    e.preventDefault();
-                    setShowPassword(!showPassword);
-                  }}
-                  className="absolute right-5 top-1/2 -translate-y-1/2 text-on-surface-variant/30 hover:text-primary transition-colors cursor-pointer"
-                >
-                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-                </button>
+              
+              <div className="space-y-2">
+                <label className="text-[10px] font-black text-on-surface-variant/40 uppercase tracking-widest px-1">Nova Senha</label>
+                <div className="relative group">
+                  <Lock className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-on-surface-variant/20 group-focus-within:text-primary transition-colors" />
+                  <input 
+                    type={showPassword ? "text" : "password"}
+                    placeholder="Deixe em branco para manter a atual"
+                    value={formData.password}
+                    onChange={(e: React.ChangeEvent<HTMLInputElement>) => handleFieldChange("password", e.target.value)}
+                    className="w-full h-16 pl-16 pr-16 bg-surface-container-highest/30 border-2 border-transparent focus:border-primary/20 focus:bg-background rounded-2xl text-sm font-bold transition-all outline-none"
+                  />
+                  <button
+                    type="button"
+                    onMouseDown={(e: React.MouseEvent) => {
+                      e.preventDefault();
+                      setShowPassword(!showPassword);
+                    }}
+                    className="absolute right-6 top-1/2 -translate-y-1/2 text-on-surface-variant/20 hover:text-primary transition-colors cursor-pointer"
+                  >
+                    {showPassword ? <EyeOff className="w-6 h-6" /> : <Eye className="w-6 h-6" />}
+                  </button>
+                </div>
               </div>
             </section>
 
