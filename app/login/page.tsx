@@ -55,7 +55,7 @@ export default function LoginPage() {
       const token = response.token || response.data?.token;
 
       if (token) {
-        Cookies.set("quizlab_token", token, { expires: 30 });
+        Cookies.set("quizlab_token", token, { expires: 7 });
         window.location.href = "/";
       } else {
         console.error("Token não encontrado na resposta:", response);

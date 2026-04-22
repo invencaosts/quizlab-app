@@ -37,6 +37,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     try {
       const data = await apiFetch("/profile", { auth: true });
       const userData = data.data || data;
+      
+      // Renova o cookie por mais 7 dias ao carregar o sistema com sucesso
+      Cookies.set("quizlab_token", token, { expires: 7 });
+      
       setUser(userData);
     } catch (err) {
       console.error("Erro ao carregar perfil:", err);
