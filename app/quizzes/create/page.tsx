@@ -205,44 +205,44 @@ export default function CreateQuizPage() {
           {/* Configurações Gerais */}
           <section className="space-y-10">
             <div className="flex items-center gap-4 px-2">
-              <div className="w-12 h-12 rounded-2xl bg-primary/10 flex items-center justify-center text-primary border border-primary/20">
+              <div className="w-12 h-12 rounded-2xl bg-primary/20 flex items-center justify-center text-primary border border-primary/30">
                 <Settings2 className="w-6 h-6" />
               </div>
-              <h2 className="text-3xl font-black tracking-tighter uppercase">Detalhes Mestres</h2>
+              <h2 className="text-3xl font-black tracking-tighter uppercase text-white">Detalhes Mestres</h2>
             </div>
 
-            <div className="bg-card/40 backdrop-blur-xl border border-white/10 rounded-[3.5rem] p-8 lg:p-12 shadow-2xl space-y-10">
+            <div className="bg-zinc-900/80 backdrop-blur-xl border border-white/5 rounded-[3.5rem] p-8 lg:p-12 shadow-2xl space-y-10">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-10">
                 
                 <div className="lg:col-span-8 space-y-8">
                   <div className="space-y-3">
-                    <label className="text-[11px] font-black text-white/30 uppercase tracking-[0.2em] ml-2">Título do Desafio</label>
+                    <label className="text-[11px] font-black text-zinc-500 uppercase tracking-[0.2em] ml-2">Título do Desafio</label>
                     <div className="relative group">
-                      <FileText className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-white/10 group-focus-within:text-primary transition-colors" />
+                      <FileText className="absolute left-6 top-1/2 -translate-y-1/2 w-6 h-6 text-zinc-700 group-focus-within:text-primary transition-colors" />
                       <input 
                         type="text"
                         placeholder="Ex: Domínio da Álgebra Linear"
                         value={title}
                         onChange={(e) => setTitle(e.target.value)}
-                        className="w-full h-18 pl-16 pr-8 bg-background/50 border-2 border-white/5 focus:border-primary/40 rounded-3xl text-lg font-bold transition-all outline-none"
+                        className="w-full h-18 pl-16 pr-8 bg-zinc-950/50 border-2 border-white/5 focus:border-primary/40 rounded-3xl text-lg font-bold transition-all outline-none text-white placeholder:text-zinc-700"
                       />
                     </div>
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-[11px] font-black text-white/30 uppercase tracking-[0.2em] ml-2">Sobre o Quiz</label>
+                    <label className="text-[11px] font-black text-zinc-500 uppercase tracking-[0.2em] ml-2">Sobre o Quiz</label>
                     <textarea 
                       placeholder="Breve descrição para seus alunos..."
                       value={description}
                       onChange={(e) => setDescription(e.target.value)}
-                      className="w-full h-40 p-8 bg-background/50 border-2 border-white/5 focus:border-primary/40 rounded-[2.5rem] text-base font-bold transition-all outline-none resize-none"
+                      className="w-full h-40 p-8 bg-zinc-950/50 border-2 border-white/5 focus:border-primary/40 rounded-[2.5rem] text-base font-bold transition-all outline-none resize-none text-white placeholder:text-zinc-700"
                     />
                   </div>
                 </div>
 
                 <div className="lg:col-span-4 space-y-8">
                   <div className="space-y-3">
-                    <label className="text-[11px] font-black text-white/30 uppercase tracking-[0.2em] ml-2">Disciplina</label>
+                    <label className="text-[11px] font-black text-zinc-500 uppercase tracking-[0.2em] ml-2">Disciplina</label>
                     <SearchableSelect 
                       variant="profile"
                       placeholder="Escolher Disciplina"
@@ -257,14 +257,14 @@ export default function CreateQuizPage() {
                   </div>
 
                   <div className="space-y-3">
-                    <label className="text-[11px] font-black text-white/30 uppercase tracking-[0.2em] ml-2">Visibilidade</label>
-                    <div className="p-2 bg-background/50 border-2 border-white/5 rounded-3xl grid grid-cols-2 gap-2">
+                    <label className="text-[11px] font-black text-zinc-500 uppercase tracking-[0.2em] ml-2">Visibilidade</label>
+                    <div className="p-2 bg-zinc-950/50 border-2 border-white/5 rounded-3xl grid grid-cols-2 gap-2">
                       <button 
                         type="button"
                         onClick={() => setIsPublic(true)}
                         className={cn(
                           "h-14 rounded-2xl flex items-center justify-center gap-2 font-black text-[10px] transition-all",
-                          isPublic ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-white/20 hover:bg-white/5"
+                          isPublic ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-zinc-600 hover:bg-white/5"
                         )}
                       >
                         <Globe2 className="w-4 h-4" />
@@ -275,7 +275,7 @@ export default function CreateQuizPage() {
                         onClick={() => setIsPublic(false)}
                         className={cn(
                           "h-14 rounded-2xl flex items-center justify-center gap-2 font-black text-[10px] transition-all",
-                          !isPublic ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-white/20 hover:bg-white/5"
+                          !isPublic ? "bg-primary text-white shadow-lg shadow-primary/20" : "text-zinc-600 hover:bg-white/5"
                         )}
                       >
                         <Lock className="w-4 h-4" />

@@ -81,7 +81,7 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className="relative bg-card/40 backdrop-blur-md border border-white/10 rounded-[2.5rem] p-6 lg:p-8 shadow-2xl overflow-hidden group"
+      className="relative bg-zinc-900/90 backdrop-blur-md border border-white/5 rounded-[2.5rem] p-6 lg:p-8 shadow-2xl overflow-hidden group"
     >
       {/* Indicador de Gradiente no Topo */}
       <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-primary via-purple-500 to-primary opacity-50" />
@@ -89,14 +89,14 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
       <div className="flex flex-col lg:flex-row gap-8">
         {/* Lado Esquerdo: Info da Questão */}
         <div className="w-full lg:w-16 flex lg:flex-col items-center justify-between lg:justify-start gap-4">
-          <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-primary font-black text-2xl border border-primary/20 shadow-inner">
+          <div className="w-14 h-14 rounded-2xl bg-primary/20 flex items-center justify-center text-primary font-black text-2xl border border-primary/30 shadow-inner">
             {index + 1}
           </div>
           <Button
             variant="ghost"
             size="icon"
             onClick={onRemove}
-            className="text-destructive hover:bg-destructive/10 rounded-full h-12 w-12 transition-colors"
+            className="text-destructive/60 hover:text-destructive hover:bg-destructive/10 rounded-full h-12 w-12 transition-colors"
           >
             <Trash2 className="h-6 w-6" />
           </Button>
@@ -106,30 +106,30 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
         <div className="flex-1 space-y-8">
           <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
             <div className="md:col-span-8 relative">
-              <label className="text-[10px] font-black text-on-surface-variant/40 uppercase tracking-widest px-1 mb-2 block">Enunciado da Questão</label>
+              <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest px-1 mb-2 block">Enunciado da Questão</label>
               <div className="relative">
-                <HelpCircle className="absolute left-5 top-1/2 -translate-y-1/2 h-6 w-6 text-primary/30" />
+                <HelpCircle className="absolute left-5 top-1/2 -translate-y-1/2 h-6 w-6 text-primary/40" />
                 <Input
                   placeholder="O que você quer perguntar?"
                   value={question.text}
                   onChange={(e) => updateQuestion({ text: e.target.value })}
-                  className="h-16 pl-14 bg-background/50 border-white/5 rounded-2xl text-lg font-bold focus:ring-4 ring-primary/10 transition-all placeholder:text-muted-foreground/30"
+                  className="h-16 pl-14 bg-zinc-950/50 border-white/5 rounded-2xl text-lg font-bold focus:ring-4 ring-primary/20 transition-all text-white placeholder:text-zinc-600"
                 />
               </div>
             </div>
             
             <div className="md:col-span-4 grid grid-cols-2 gap-3">
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-on-surface-variant/40 uppercase tracking-widest px-1 block">Tipo</label>
+                <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest px-1 block">Tipo</label>
                 <Select
                   value={question.type}
                   onValueChange={(val: any) => updateQuestion({ type: val })}
                 >
-                  <SelectTrigger className="h-16 bg-background/50 border-white/5 rounded-2xl font-bold">
+                  <SelectTrigger className="h-16 bg-zinc-950/50 border-white/5 rounded-2xl font-bold text-white">
                     <Layers className="h-4 w-4 mr-2 text-primary" />
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-zinc-900 border-white/10 text-white">
                     <SelectItem value="SINGLE_CHOICE">Escolha Única</SelectItem>
                     <SelectItem value="MULTIPLE_CHOICE">Múltipla Escolha</SelectItem>
                   </SelectContent>
@@ -137,16 +137,16 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
               </div>
 
               <div className="space-y-2">
-                <label className="text-[10px] font-black text-on-surface-variant/40 uppercase tracking-widest px-1 block">Tempo</label>
+                <label className="text-[10px] font-black text-zinc-500 uppercase tracking-widest px-1 block">Tempo</label>
                 <Select
                   value={question.timeLimitSeconds.toString()}
                   onValueChange={(val) => updateQuestion({ timeLimitSeconds: parseInt(val) })}
                 >
-                  <SelectTrigger className="h-16 bg-background/50 border-white/5 rounded-2xl font-bold">
+                  <SelectTrigger className="h-16 bg-zinc-950/50 border-white/5 rounded-2xl font-bold text-white">
                     <Clock className="h-4 w-4 mr-2 text-primary" />
                     <SelectValue />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="bg-zinc-900 border-white/10 text-white">
                     <SelectItem value="15">15s</SelectItem>
                     <SelectItem value="30">30s</SelectItem>
                     <SelectItem value="60">60s</SelectItem>
@@ -167,12 +167,12 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
                 className={`relative group/alt flex items-center gap-4 p-2 pr-6 border-2 rounded-[2rem] transition-all duration-300 ${
                   alt.isCorrect 
                     ? "bg-emerald-500/20 border-emerald-500 shadow-[0_0_20px_rgba(16,185,129,0.15)]" 
-                    : `${altColors[aIdx % altColors.length]}`
+                    : `bg-zinc-950/40 border-white/5 hover:border-white/10`
                 }`}
               >
                 {/* Ícone Geométrico */}
                 <div className={`w-14 h-14 flex items-center justify-center text-2xl font-black rounded-2xl shadow-lg transition-transform group-hover/alt:rotate-12 ${
-                  alt.isCorrect ? "bg-emerald-500 text-white" : "bg-white/10 text-white/80"
+                  alt.isCorrect ? "bg-emerald-500 text-white" : "bg-white/5 text-white/40"
                 }`}>
                   {altIcons[aIdx % altIcons.length]}
                 </div>
@@ -181,7 +181,7 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
                   placeholder={`Opção ${aIdx + 1}`}
                   value={alt.text}
                   onChange={(e) => updateAlternative(aIdx, { text: e.target.value })}
-                  className="bg-transparent border-none shadow-none focus-visible:ring-0 text-lg font-bold text-white placeholder:text-white/20 h-12"
+                  className="bg-transparent border-none shadow-none focus-visible:ring-0 text-lg font-bold text-white placeholder:text-zinc-600 h-12"
                 />
 
                 <div className="flex items-center gap-3">
@@ -190,7 +190,7 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
                       variant="ghost"
                       size="icon"
                       onClick={() => removeAlternative(aIdx)}
-                      className="h-10 w-10 hover:bg-white/10 rounded-full text-white/30 hover:text-white transition-colors"
+                      className="h-10 w-10 hover:bg-white/5 rounded-full text-zinc-600 hover:text-white transition-colors"
                     >
                       <Trash2 className="h-5 w-5" />
                     </Button>
@@ -199,8 +199,8 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
                     onClick={() => updateAlternative(aIdx, { isCorrect: !alt.isCorrect })}
                     className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-500 ${
                       alt.isCorrect 
-                        ? "bg-emerald-500 text-white rotate-0" 
-                        : "bg-white/10 text-white/10 hover:text-white/40 -rotate-90"
+                        ? "bg-emerald-500 text-white rotate-0 shadow-lg shadow-emerald-500/50" 
+                        : "bg-white/5 text-white/5 hover:text-white/20 -rotate-90"
                     }`}
                   >
                     <CheckCircle2 className="h-7 w-7" />
@@ -213,7 +213,7 @@ export function QuestionEditor({ index, question, onChange, onRemove }: Question
               <Button
                 variant="outline"
                 onClick={addAlternative}
-                className="h-20 border-4 border-dashed border-white/5 hover:border-primary/40 bg-white/5 hover:bg-primary/5 rounded-[2rem] text-white/30 hover:text-primary transition-all flex items-center justify-center gap-3 font-black uppercase tracking-widest text-xs"
+                className="h-20 border-4 border-dashed border-white/5 hover:border-primary/40 bg-zinc-950/20 hover:bg-primary/5 rounded-[2rem] text-zinc-600 hover:text-primary transition-all flex items-center justify-center gap-3 font-black uppercase tracking-widest text-xs"
               >
                 <Plus className="h-6 w-6" />
                 Adicionar Alternativa
