@@ -68,7 +68,7 @@ export function SearchableSelect({
   // Estilos variantes
   const variantStyles = {
     auth: 'h-auto py-6 bg-surface-container-highest border-none rounded-[1.25rem] text-on-surface tracking-tight',
-    profile: 'h-[58px] bg-zinc-50 border border-zinc-100 rounded-2xl text-zinc-900'
+    profile: 'h-14 bg-surface-container-highest/30 border-2 border-transparent rounded-2xl text-sm font-bold text-foreground'
   }
 
   return (
@@ -85,6 +85,7 @@ export function SearchableSelect({
               </div>
             )}
             <Button
+              type="button"
               variant="outline"
               role="combobox"
               aria-expanded={open}
@@ -92,9 +93,9 @@ export function SearchableSelect({
                 'w-full justify-between font-bold transition-all outline-none text-left duration-300',
                 variantStyles[variant],
                 Icon ? 'pl-14 pr-6' : 'px-6',
-                !value && (variant === 'auth' ? 'text-on-surface-variant/20' : 'text-zinc-400'),
-                open && (variant === 'auth' ? 'ring-2 ring-primary/30 bg-white' : 'ring-4 ring-primary/5 border-primary/30 bg-white'),
-                error && (variant === 'auth' ? 'ring-2 ring-destructive/30 bg-destructive/5' : 'ring-4 ring-destructive/10 border-destructive/30 bg-destructive/5'),
+                !value && (variant === 'auth' ? 'text-on-surface-variant/40' : 'text-zinc-400'),
+                open && (variant === 'auth' ? 'ring-2 ring-primary/30 bg-white' : 'border-primary/20 bg-background'),
+                error && (variant === 'auth' ? 'ring-2 ring-destructive/30 bg-destructive/5' : 'border-destructive/30 bg-destructive/5'),
                 className
               )}
             >
