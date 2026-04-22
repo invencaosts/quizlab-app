@@ -42,7 +42,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     }
 
     try {
-      const data = await apiFetch("/profile", { auth: true });
+      const data = await apiFetch("/profile");
       
       // Tenta encontrar o objeto do usuário em diferentes níveis (comum em APIs Adonis)
       const userData = data.user || data.data || data;
