@@ -62,6 +62,7 @@ export default function RegisterPage() {
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
+  
 
 
   // Fetch Data
@@ -222,6 +223,27 @@ export default function RegisterPage() {
 
   };
 
+  // Referência para evitar re-renders do listener
+  const handleRegisterRef = React.useRef(handleRegister);
+  handleRegisterRef.current = handleRegister;
+
+  // Escuta global para a tecla Enter
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      // Evita disparar se estiver em um elemento que já trata o Enter (como botões)
+      // ou se o formulário estiver carregando
+      if (e.key === "Enter" && !loading) {
+        // Se o foco estiver em um botão, deixa o navegador tratar naturalmente
+        if (document.activeElement?.tagName === 'BUTTON') return;
+        
+        handleRegisterRef.current(e as any);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [loading]); // Depende apenas do loading
+
   return (
     <main className="min-h-screen flex items-center justify-center p-0 lg:p-6 relative overflow-hidden bg-background font-sans bg-academic-pattern bg-fixed">
       <AuthBackground />
@@ -277,7 +299,7 @@ export default function RegisterPage() {
               {step === 1 && (
                 <div className="space-y-6 animate-in slide-in-from-right-4 fade-in duration-300">
                   <AuthInput 
-                    label="Nome Completo *"
+                    label="Nome Completo"
                     name="fullName"
                     required
                     value={formData.fullName}
@@ -327,7 +349,7 @@ export default function RegisterPage() {
                     />
                     <div className="space-y-4">
                       <label className="block text-[11px] font-black text-on-surface-variant uppercase tracking-[0.3em] ml-1 opacity-60">
-                        Campus de Origem <span className="text-destructive">*</span>
+                        Campus de Origem
                       </label>
                       <SearchableSelect 
                         placeholder="Pesquisar campus..."
@@ -349,7 +371,7 @@ export default function RegisterPage() {
 
                   <div className="space-y-4">
                     <label className="block text-[11px] font-black text-on-surface-variant uppercase tracking-[0.3em] ml-1 opacity-60">
-                      Curso Vinculado <span className="text-destructive">*</span>
+                      Curso Vinculado
                     </label>
                     <SearchableSelect 
                       placeholder="Pesquisar curso..."
@@ -373,7 +395,7 @@ export default function RegisterPage() {
               {step === 3 && (
                 <div className="space-y-6 animate-in slide-in-from-right-4 fade-in duration-300">
                   <AuthInput 
-                    label="E-mail Institucional *"
+                    label="E-mail Institucional"
                     name="email"
                     type="email"
                     icon={Mail}
@@ -385,7 +407,7 @@ export default function RegisterPage() {
                   />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <AuthInput 
-                      label="Sua Senha *"
+                      label="Sua Senha"
                       name="password"
                       type={showPassword ? "text" : "password"}
                       icon={Lock}
@@ -456,7 +478,7 @@ export default function RegisterPage() {
                       "transition-all active:scale-[0.96] group",
                       "disabled:opacity-70 disabled:grayscale-[0.5] disabled:cursor-not-allowed"
                   )}
-                  type={step === 3 ? "submit" : "button"}
+                  type="submit"
                 >
                   {loading ? (
                     <>

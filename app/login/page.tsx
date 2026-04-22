@@ -21,6 +21,7 @@ export default function LoginPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [errors, setErrors] = useState<Record<string, string>>({});
+  
 
   const validate = () => {
     const newErrors: Record<string, string> = {};
@@ -71,6 +72,22 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
+  // Referência para evitar re-renders do listener
+  const handleLoginRef = React.useRef(handleLogin);
+  handleLoginRef.current = handleLogin;
+
+  // Escuta global para a tecla Enter
+  React.useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Enter" && !loading) {
+        if (document.activeElement?.tagName === 'BUTTON') return;
+        handleLoginRef.current(e as any);
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [loading]);
 
   const handleFieldChange = (field: "email" | "password", value: string) => {
     if (field === "email") setEmail(value);
@@ -156,9 +173,9 @@ export default function LoginPage() {
                   disabled={loading}
                   error={errors.password}
                   rightElement={
-                    <button
-                      type="button"
-                      onClick={() => setShowPassword(!showPassword)}
+                        <button
+                          type="button"
+                          onClick={() => setShowPassword(!showPassword)}
                       className="text-on-surface-variant/30 hover:text-primary transition-colors focus:outline-none cursor-pointer"
                     >
                       {showPassword ? <EyeOff className="w-7 h-7" /> : <Eye className="w-7 h-7" />}

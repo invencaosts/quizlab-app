@@ -10,6 +10,10 @@ import { cn } from "@/lib/utils";
 export default function HomePage() {
   const { user, loading } = useAuth();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
+  
+  const toggleSidebar = React.useCallback(() => {
+    setIsSidebarCollapsed(prev => !prev);
+  }, []);
 
   useEffect(() => {
     if (user) {
@@ -57,7 +61,7 @@ export default function HomePage() {
       <Sidebar 
         userRole={user.role} 
         isCollapsed={isSidebarCollapsed} 
-        onToggleCollapse={() => setIsSidebarCollapsed(!isSidebarCollapsed)} 
+        onToggleCollapse={toggleSidebar} 
       />
       
       <main className={cn(

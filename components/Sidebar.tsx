@@ -33,11 +33,9 @@ const navItems = [
   { label: "Painel Principal", href: "/", icon: LayoutDashboard, roles: ["P", "S", "A"] },
   { label: "Meus Quizzes", href: "/quizzes", icon: BookOpen, roles: ["P"] },
   { label: "Comunidade", href: "/community", icon: Globe2, roles: ["P", "S", "A"] },
-  { label: "Perfil", href: "/profile", icon: UserCircle2, roles: ["P", "S", "A"] },
-  { label: "Configurações", href: "/settings", icon: Settings, roles: ["P", "S", "A"] },
 ];
 
-export function Sidebar({ userRole, isCollapsed = false, onToggleCollapse }: SidebarProps) {
+export const Sidebar = React.memo(function Sidebar({ userRole, isCollapsed = false, onToggleCollapse }: SidebarProps) {
   const pathname = usePathname();
   const [isMobileOpen, setIsMobileOpen] = useState(false);
   const { user, logout } = useAuth();
@@ -181,24 +179,32 @@ export function Sidebar({ userRole, isCollapsed = false, onToggleCollapse }: Sid
           "flex items-center bg-surface-container-low border border-surface-container-highest/50 transition-all duration-500",
           collapsed ? "p-1 rounded-full flex-col gap-2" : "p-3 rounded-xl gap-3"
         )}>
-          <div className={cn(
-            "rounded-lg bg-gradient-to-br from-primary to-green-600 flex items-center justify-center text-white font-black shrink-0",
-            collapsed ? "w-12 h-12 rounded-full text-xs" : "w-9 h-9 text-[10px]"
-          )}>
-            {user?.initials || "??"}
-          </div>
-          {!collapsed && (
-            <div className="flex-1 min-w-0">
-              <p className="text-[12px] font-bold text-foreground truncate">{user?.fullName || "Usuário"}</p>
-              <p className="text-[10px] text-on-surface-variant/40 font-bold truncate uppercase tracking-widest">
-                {normalizedRole === "P" ? "Professor" : normalizedRole === "A" ? "Administrador" : "Estudante"}
-              </p>
+          <Link 
+            href="/profile"
+            className="flex flex-1 items-center gap-3 min-w-0 group/profile cursor-pointer"
+            onClick={() => setIsMobileOpen(false)}
+          >
+            <div className={cn(
+              "rounded-lg bg-gradient-to-br from-primary to-green-600 flex items-center justify-center text-white font-black shrink-0 group-hover/profile:scale-110 transition-transform",
+              collapsed ? "w-12 h-12 rounded-full text-xs" : "w-9 h-9 text-[10px]"
+            )}>
+              {user?.initials || "??"}
             </div>
-          )}
+            {!collapsed && (
+              <div className="flex-1 min-w-0">
+                <p className="text-[12px] font-bold text-foreground truncate group-hover/profile:text-primary transition-colors">{user?.fullName || "Usuário"}</p>
+                <p className="text-[10px] text-on-surface-variant/40 font-bold truncate uppercase tracking-widest">
+                  {normalizedRole === "P" ? "Professor" : normalizedRole === "A" ? "Administrador" : "Estudante"}
+                </p>
+              </div>
+            )}
+          </Link>
+          
           {!collapsed && (
             <button 
               onClick={logout}
               className="p-2 text-on-surface-variant/30 hover:text-destructive transition-colors group cursor-pointer"
+              title="Sair do sistema"
             >
               <LogOut className="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
             </button>
@@ -207,6 +213,7 @@ export function Sidebar({ userRole, isCollapsed = false, onToggleCollapse }: Sid
             <button 
               onClick={logout}
               className="p-3 text-on-surface-variant/30 hover:text-destructive transition-colors group cursor-pointer border-t border-surface-container-highest w-full flex justify-center"
+              title="Sair do sistema"
             >
               <LogOut className="w-5 h-5" />
             </button>
@@ -268,4 +275,4 @@ export function Sidebar({ userRole, isCollapsed = false, onToggleCollapse }: Sid
       </aside>
     </>
   );
-}
+});
