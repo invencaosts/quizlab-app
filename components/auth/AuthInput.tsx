@@ -5,7 +5,7 @@ import { LucideIcon } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface AuthInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
-  label: string;
+  label?: string;
   icon?: LucideIcon;
   error?: string;
   rightElement?: React.ReactNode;
@@ -21,9 +21,11 @@ export function AuthInput({
 }: AuthInputProps) {
   return (
     <div className="space-y-4 w-full">
-      <label className="block text-[11px] font-black text-on-surface-variant uppercase tracking-[0.3em] ml-1 opacity-60">
-        {label}
-      </label>
+      {label && (
+        <label className="block text-[11px] font-black text-on-surface-variant uppercase tracking-[0.3em] ml-1 opacity-60">
+          {label}
+        </label>
+      )}
       <div className="relative group">
         {Icon && (
           <div className="absolute inset-y-0 left-0 pl-6 flex items-center pointer-events-none text-on-surface-variant/30 group-focus-within:text-primary transition-all duration-300">

@@ -272,7 +272,7 @@ export default function RegisterPage() {
               {step === 1 && (
                 <div className="space-y-6 animate-in slide-in-from-right-4 fade-in duration-300">
                   <AuthInput 
-                    label="Nome Completo"
+                    label="Nome Completo *"
                     name="fullName"
                     required
                     value={formData.fullName}
@@ -322,7 +322,7 @@ export default function RegisterPage() {
                     />
                     <div className="space-y-4">
                       <label className="block text-[11px] font-black text-on-surface-variant uppercase tracking-[0.3em] ml-1 opacity-60">
-                        Campus de Origem
+                        Campus de Origem <span className="text-destructive">*</span>
                       </label>
                       <SearchableSelect 
                         placeholder="Pesquisar campus..."
@@ -344,7 +344,7 @@ export default function RegisterPage() {
 
                   <div className="space-y-4">
                     <label className="block text-[11px] font-black text-on-surface-variant uppercase tracking-[0.3em] ml-1 opacity-60">
-                      Curso Vinculado
+                      Curso Vinculado <span className="text-destructive">*</span>
                     </label>
                     <SearchableSelect 
                       placeholder="Pesquisar curso..."
@@ -368,7 +368,7 @@ export default function RegisterPage() {
               {step === 3 && (
                 <div className="space-y-6 animate-in slide-in-from-right-4 fade-in duration-300">
                   <AuthInput 
-                    label="E-mail Institucional"
+                    label="E-mail Institucional *"
                     name="email"
                     type="email"
                     icon={Mail}
@@ -380,7 +380,7 @@ export default function RegisterPage() {
                   />
                   <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                     <AuthInput 
-                      label="Sua Senha"
+                      label="Sua Senha *"
                       name="password"
                       type={showPassword ? "text" : "password"}
                       icon={Lock}

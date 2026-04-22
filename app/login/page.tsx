@@ -20,9 +20,28 @@ export default function LoginPage() {
   const [showPassword, setShowPassword] = useState(false);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+    if (!email) {
+      newErrors.email = "O e-mail é obrigatório";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
+      newErrors.email = "E-mail inválido";
+    }
+    
+    if (!password) {
+      newErrors.password = "A senha é obrigatória";
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
 
   const handleLogin = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validate()) return;
+    
     setLoading(true);
     setError(null);
 
@@ -43,8 +62,20 @@ export default function LoginPage() {
         setError(err.message || "Credenciais inválidas. Verifique seu e-mail e senha.");
       }
     } finally {
-
       setLoading(false);
+    }
+  };
+
+  const handleFieldChange = (field: "email" | "password", value: string) => {
+    if (field === "email") setEmail(value);
+    if (field === "password") setPassword(value);
+    
+    if (errors[field]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[field];
+        return newErrors;
+      });
     }
   };
 
@@ -87,17 +118,17 @@ export default function LoginPage() {
               </div>
             )}
 
-            <form className="space-y-8" onSubmit={handleLogin}>
+            <form className="space-y-8" onSubmit={handleLogin} noValidate>
               <div className="space-y-4">
                 <AuthInput 
                   label="E-mail"
                   icon={Mail}
                   type="email"
-                  required
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={(e) => handleFieldChange("email", e.target.value)}
                   placeholder="Seu e-mail cadastrado"
                   disabled={loading}
+                  error={errors.email}
                 />
               </div>
 
@@ -111,14 +142,13 @@ export default function LoginPage() {
                   </Link>
                 </div>
                 <AuthInput 
-                  label="Senha"
                   icon={Lock}
                   type={showPassword ? "text" : "password"}
-                  required
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={(e) => handleFieldChange("password", e.target.value)}
                   placeholder="Sua senha secreta"
                   disabled={loading}
+                  error={errors.password}
                   rightElement={
                     <button
                       type="button"
