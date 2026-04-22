@@ -252,12 +252,15 @@ export function Sidebar({ userRole, isCollapsed = false, onToggleCollapse }: Sid
       />
 
       <aside className={cn(
-        "lg:hidden fixed left-0 top-0 bottom-0 w-80 bg-card z-50 shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
+        "lg:hidden fixed left-0 top-0 bottom-0 w-80 bg-card z-[60] shadow-2xl transition-transform duration-700 ease-[cubic-bezier(0.32,0.72,0,1)]",
         isMobileOpen ? "translate-x-0" : "-translate-x-full"
       )}>
         <button 
-          onClick={() => setIsMobileOpen(true)}
-          className="absolute top-6 right-6 p-2.5 bg-surface-container-highest rounded-2xl text-on-surface-variant transition-all active:scale-90"
+          onClick={(e) => {
+            e.stopPropagation();
+            setIsMobileOpen(false);
+          }}
+          className="absolute top-6 right-6 w-11 h-11 bg-surface-container-highest rounded-2xl text-on-surface-variant transition-all active:scale-90 cursor-pointer flex items-center justify-center z-[70] shadow-sm"
         >
           <X className="w-5 h-5" />
         </button>

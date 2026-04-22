@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { Sidebar } from "@/components/Sidebar";
+import { LandingPage } from "@/components/LandingPage";
 import { useAuth } from "@/contexts/AuthContext";
 import { Loader2, TrendingUp, Users, BookOpen, Sparkles } from "lucide-react";
 import { Card } from "@/components/ui/card";
@@ -11,6 +12,7 @@ export default function HomePage() {
   const { user, loading } = useAuth();
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
 
+  // 1. Loading State
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -24,13 +26,12 @@ export default function HomePage() {
     );
   }
 
+  // 2. Unauthenticated State (Landing Page)
   if (!user) {
-    if (typeof window !== "undefined") {
-      window.location.href = "/login";
-    }
-    return null;
+    return <LandingPage />;
   }
 
+  // 3. Authenticated State (Dashboard)
   return (
     <div className="min-h-screen bg-background font-sans selection:bg-primary/20 overflow-x-hidden">
       <Sidebar 
