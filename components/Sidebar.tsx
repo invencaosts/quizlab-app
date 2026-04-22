@@ -49,11 +49,7 @@ export const Sidebar = React.memo(function Sidebar({ userRole, isCollapsed = fal
 
   // Log de Auditoria RBAC
   useEffect(() => {
-    if (user) {
-      console.log("%c [RBAC] Sidebar Carregada Dinamicamente ", "background: #1a1a1a; color: #32a041; font-weight: bold;");
-      console.log("Role:", user.role);
-      console.log("Menus:", user.menus?.map(m => m.label));
-    }
+    // RBAC carregado com sucesso
   }, [user]);
 
   const SidebarContent = ({ collapsed = false }: { collapsed: boolean }) => (
