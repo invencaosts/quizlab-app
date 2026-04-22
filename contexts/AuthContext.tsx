@@ -9,7 +9,8 @@ interface User {
   id: string;
   fullName: string;
   email: string;
-  role: "P" | "S" | "A";
+  role: string;
+  menus: Array<{ label: string; href: string; icon: string }>;
   initials: string;
   cpf?: string;
   registration?: string;
@@ -42,7 +43,12 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
     try {
       const data = await apiFetch("/profile", { auth: true });
-      const userData = data.data || data;
+      
+      // Tenta encontrar o objeto do usuário em diferentes níveis (comum em APIs Adonis)
+      const userData = data.user || data.data || data;
+      
+      console.log("AUTH DEBUG - Estrutura Recebida:", data);
+      console.log("AUTH DEBUG - User Extraído:", userData);
       
       // Renova o cookie por mais 7 dias ao carregar o sistema com sucesso
       Cookies.set("quizlab_token", token, { expires: 7 });
