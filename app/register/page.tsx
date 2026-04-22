@@ -2,6 +2,7 @@
 
 import React, { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
+import { isValidCPF } from "@/lib/cpf-validator";
 import { 
   Mail, 
   Lock, 
@@ -86,7 +87,11 @@ export default function RegisterPage() {
       } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
         newErrors.email = "E-mail inválido";
       }
-      if (!data.cpf) newErrors.cpf = "CPF é obrigatório";
+      if (!data.cpf) {
+        newErrors.cpf = "CPF é obrigatório";
+      } else if (!isValidCPF(data.cpf)) {
+        newErrors.cpf = "CPF inválido";
+      }
     }
 
     if (currentStep === 2) {
@@ -114,12 +119,14 @@ export default function RegisterPage() {
   const nextStep = () => {
     if (validateStep(step)) {
       setError(null);
+      setErrors({}); // Limpa erros para o próximo passo não começar "vermelho"
       setStep(prev => Math.min(prev + 1, 3));
     }
   };
   
   const prevStep = () => {
     setError(null);
+    setErrors({}); // Limpa erros ao voltar para não manter estados de erro antigos
     setStep(prev => Math.max(prev - 1, 1));
   };
 
@@ -192,7 +199,22 @@ export default function RegisterPage() {
   }, [handleRegister]);
 
   const handleFieldChange = (field: string, value: string) => {
-    setFormData(prev => ({ ...prev, [field]: value }));
+    let formattedValue = value;
+
+    if (field === "cpf") {
+      formattedValue = value
+        .replace(/\D/g, "")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d)/, "$1.$2")
+        .replace(/(\d{3})(\d{1,2})/, "$1-$2")
+        .replace(/(-\d{2})\d+?$/, "$1");
+    }
+
+    if (field === "registration") {
+      formattedValue = value.replace(/\D/g, "").slice(0, 10);
+    }
+
+    setFormData(prev => ({ ...prev, [field]: formattedValue }));
     if (errors[field]) {
       setErrors(prev => {
         const newErrors = { ...prev };
