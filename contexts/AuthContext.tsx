@@ -11,6 +11,12 @@ interface User {
   email: string;
   role: "P" | "S" | "A";
   initials: string;
+  cpf?: string;
+  registration?: string;
+  campus?: { id: string; name: string };
+  course?: { id: string; name: string };
+  updatedAt?: string;
+  createdAt?: string;
 }
 
 interface AuthContextType {
