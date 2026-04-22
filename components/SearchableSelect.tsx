@@ -1,7 +1,7 @@
 'use client'
 
 import * as React from 'react'
-import { Check, ChevronsUpDown, Search } from 'lucide-react'
+import { Check, ChevronsUpDown, LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Button } from '@/components/ui/button'
 import {
@@ -21,8 +21,8 @@ import {
 interface Item {
   id: string
   label: string
-  sublabel?: string // E.g., UF or City
-  searchTerm?: string // Combined string for better search
+  sublabel?: string
+  searchTerm?: string
 }
 
 interface SearchableSelectProps {
@@ -34,8 +34,9 @@ interface SearchableSelectProps {
   className?: string
   initialDisplayCount?: number
   error?: string
+  icon?: LucideIcon
+  variant?: 'auth' | 'profile'
 }
-
 
 export function SearchableSelect({
   items,
@@ -46,13 +47,14 @@ export function SearchableSelect({
   className,
   initialDisplayCount = 3,
   error,
+  icon: Icon,
+  variant = 'auth'
 }: SearchableSelectProps) {
   const [open, setOpen] = React.useState(false)
   const [search, setSearch] = React.useState('')
 
   const selectedItem = items.find((item) => item.id === value)
 
-  // Filtragem customizada para buscar por múltiplos campos
   const filteredItems = React.useMemo(() => {
     if (!search) return items.slice(0, initialDisplayCount)
     
@@ -63,45 +65,64 @@ export function SearchableSelect({
     )
   }, [items, search, initialDisplayCount])
 
+  // Estilos variantes
+  const variantStyles = {
+    auth: 'h-auto py-6 bg-surface-container-highest border-none rounded-[1.25rem] text-on-surface tracking-tight',
+    profile: 'h-[58px] bg-zinc-50 border border-zinc-100 rounded-2xl text-zinc-900'
+  }
+
   return (
-    <div className="space-y-2 w-full">
+    <div className="space-y-2 w-full group">
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
-          <Button
-            variant="outline"
-            role="combobox"
-            aria-expanded={open}
-            className={cn(
-              'w-full justify-between h-auto py-6 px-6 bg-surface-container-highest border-none outline-none font-bold text-base tracking-tight rounded-[1.25rem] transition-all duration-300',
-              !value && 'text-on-surface-variant/20',
-              open && 'ring-2 ring-primary/30 bg-white',
-              error && 'ring-2 ring-destructive/30 bg-destructive/5',
-              className
+          <div className="relative cursor-pointer">
+            {Icon && (
+              <div className={cn(
+                "absolute left-5 top-1/2 -translate-y-1/2 z-10 transition-colors pointer-events-none",
+                open ? "text-primary" : "text-zinc-400 group-focus-within:text-primary"
+              )}>
+                <Icon className="w-5 h-5" />
+              </div>
             )}
-          >
-
-            <span className="truncate">
-              {selectedItem 
-                ? `${selectedItem.label}${selectedItem.sublabel ? ` - ${selectedItem.sublabel}` : ''}` 
-                : placeholder}
-            </span>
-            <ChevronsUpDown className="ml-2 h-6 w-6 shrink-0 text-on-surface-variant/30" />
-
-          </Button>
+            <Button
+              variant="outline"
+              role="combobox"
+              aria-expanded={open}
+              className={cn(
+                'w-full justify-between font-bold transition-all outline-none text-left duration-300',
+                variantStyles[variant],
+                Icon ? 'pl-14 pr-6' : 'px-6',
+                !value && (variant === 'auth' ? 'text-on-surface-variant/20' : 'text-zinc-400'),
+                open && (variant === 'auth' ? 'ring-2 ring-primary/30 bg-white' : 'ring-4 ring-primary/5 border-primary/30 bg-white'),
+                error && (variant === 'auth' ? 'ring-2 ring-destructive/30 bg-destructive/5' : 'ring-4 ring-destructive/10 border-destructive/30 bg-destructive/5'),
+                className
+              )}
+            >
+              <span className="truncate">
+                {selectedItem 
+                  ? `${selectedItem.label}${selectedItem.sublabel ? ` - ${selectedItem.sublabel}` : ''}` 
+                  : placeholder}
+              </span>
+              <ChevronsUpDown className={cn(
+                "ml-2 h-5 w-5 shrink-0 opacity-30",
+                variant === 'auth' && "h-6 w-6 text-on-surface-variant/30"
+              )} />
+            </Button>
+          </div>
         </PopoverTrigger>
-        <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
+        <PopoverContent className="w-[--radix-popover-trigger-width] p-0 border-zinc-100 shadow-2xl rounded-2xl overflow-hidden" align="start">
           <Command shouldFilter={false} className="p-2">
             <div className="flex items-center px-1 mb-2">
               <CommandInput 
                 placeholder="Pesquisar..." 
                 value={search}
                 onValueChange={setSearch}
-                className="h-14 flex-1 text-base"
+                className="h-12 flex-1 text-base border-none ring-0 outline-none"
               />
             </div>
 
             <CommandList className="max-h-[300px] overflow-y-auto">
-              <CommandEmpty className="py-6 text-center text-sm">{emptyMessage}</CommandEmpty>
+              <CommandEmpty className="py-6 text-center text-sm font-medium text-zinc-500">{emptyMessage}</CommandEmpty>
               <CommandGroup>
                 {(search ? filteredItems : items).map((item) => (
                   <CommandItem
@@ -112,12 +133,12 @@ export function SearchableSelect({
                       setOpen(false)
                       setSearch('')
                     }}
-                    className="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-surface-container-low transition-colors"
+                    className="flex items-center justify-between py-3 px-4 cursor-pointer hover:bg-emerald-50 rounded-xl transition-colors m-1"
                   >
                     <div className="flex flex-col">
-                      <span className="font-medium text-on-surface">{item.label}</span>
+                      <span className="font-bold text-zinc-900">{item.label}</span>
                       {item.sublabel && (
-                        <span className="text-xs text-on-surface-variant font-bold uppercase">
+                        <span className="text-[10px] text-zinc-400 font-black uppercase tracking-widest mt-0.5">
                           {item.sublabel}
                         </span>
                       )}
@@ -136,11 +157,12 @@ export function SearchableSelect({
         </PopoverContent>
       </Popover>
       {error && (
-        <p className="text-[10px] font-bold text-destructive uppercase tracking-widest ml-1 animate-in fade-in slide-in-from-top-1 duration-300">
+        <p className={cn(
+          "text-[10px] font-black uppercase tracking-widest ml-1 animate-in fade-in slide-in-from-top-1 duration-300 text-destructive"
+        )}>
           {error}
         </p>
       )}
     </div>
   )
 }
-
