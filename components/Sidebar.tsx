@@ -147,20 +147,22 @@ export const Sidebar = React.memo(function Sidebar({ userRole, isCollapsed = fal
         collapsed ? "flex flex-col items-center" : ""
       )}>
         {(user?.role === 'PROFESSOR' || user?.role === 'ADMIN') && (
-          <Button 
-            className={cn(
-              "font-black tracking-tight shadow-[0_8px_16px_-4px_rgba(50,160,65,0.4)] hover:shadow-[0_12px_24px_-8px_rgba(50,160,65,0.5)] transition-all active:scale-[0.97] group cursor-pointer relative overflow-hidden",
-              collapsed ? "w-12 h-12 rounded-full p-0" : "w-full h-12 rounded-xl text-[13px]"
-            )}
-          >
-            <div className="flex items-center justify-center w-full">
-              <Plus className={cn(
-                "group-hover:rotate-180 transition-transform duration-700",
-                collapsed ? "w-6 h-6" : "absolute left-6 w-5 h-5"
-              )} />
-              {!collapsed && <span>Novo Quiz</span>}
-            </div>
-          </Button>
+          <Link href="/quizzes/create" className="block w-full">
+            <Button 
+              className={cn(
+                "font-black tracking-tight shadow-[0_8px_16px_-4px_rgba(50,160,65,0.4)] hover:shadow-[0_12px_24px_-8px_rgba(50,160,65,0.5)] transition-all active:scale-[0.97] group cursor-pointer relative overflow-hidden",
+                collapsed ? "w-12 h-12 rounded-full p-0" : "w-full h-12 rounded-xl text-[13px]"
+              )}
+            >
+              <div className="flex items-center justify-center w-full">
+                <Plus className={cn(
+                  "group-hover:rotate-180 transition-transform duration-700",
+                  collapsed ? "w-6 h-6" : "absolute left-6 w-5 h-5"
+                )} />
+                {!collapsed && <span>Novo Quiz</span>}
+              </div>
+            </Button>
+          </Link>
         )}
 
         {(user?.role === 'STUDENT') && (
