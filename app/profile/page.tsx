@@ -219,13 +219,13 @@ export default function ProfilePage() {
                         label="Nome Completo"
                         icon={User}
                         value={formData.fullName}
-                        onChange={(e) => setFormData({...formData, fullName: e.target.value})}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, fullName: e.target.value})}
                       />
                       <ProfileInput 
                         label="E-mail Institucional"
                         icon={Mail}
                         value={formData.email}
-                        onChange={(e) => setFormData({...formData, email: e.target.value})}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, email: e.target.value})}
                       />
                     </div>
                   </section>
@@ -242,7 +242,7 @@ export default function ProfilePage() {
                         label="Matrícula"
                         icon={Hash}
                         value={formData.registration}
-                        onChange={(e) => setFormData({...formData, registration: e.target.value})}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, registration: e.target.value})}
                       />
                       <div className="space-y-2">
                         <label className="text-[10px] font-black text-on-surface-variant/40 uppercase tracking-widest px-1">Campus</label>
@@ -250,7 +250,7 @@ export default function ProfilePage() {
                           <MapPin className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant/30 group-focus-within:text-primary transition-colors" />
                           <select 
                             value={formData.campusId}
-                            onChange={(e) => setFormData({...formData, campusId: e.target.value})}
+                            onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({...formData, campusId: e.target.value})}
                             className="w-full h-14 pl-14 pr-6 bg-surface-container-highest/30 border-2 border-transparent focus:border-primary/20 focus:bg-background rounded-2xl text-sm font-bold transition-all outline-none appearance-none cursor-pointer"
                           >
                             <option value="">Selecione o Campus</option>
@@ -266,7 +266,7 @@ export default function ProfilePage() {
                         <BookOpen className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-on-surface-variant/30 group-focus-within:text-primary transition-colors" />
                         <select 
                           value={formData.courseId}
-                          onChange={(e) => setFormData({...formData, courseId: e.target.value})}
+                          onChange={(e: React.ChangeEvent<HTMLSelectElement>) => setFormData({...formData, courseId: e.target.value})}
                           className="w-full h-14 pl-14 pr-6 bg-surface-container-highest/30 border-2 border-transparent focus:border-primary/20 focus:bg-background rounded-2xl text-sm font-bold transition-all outline-none appearance-none cursor-pointer"
                         >
                           <option value="">Selecione o Curso</option>
@@ -289,12 +289,12 @@ export default function ProfilePage() {
                         type={showPassword ? "text" : "password"}
                         placeholder="Deixe em branco para manter a atual"
                         value={formData.password}
-                        onChange={(e) => setFormData({...formData, password: e.target.value})}
+                        onChange={(e: React.ChangeEvent<HTMLInputElement>) => setFormData({...formData, password: e.target.value})}
                         className="w-full h-14 pl-14 pr-14 bg-surface-container-highest/30 border-2 border-transparent focus:border-primary/20 focus:bg-background rounded-2xl text-sm font-bold transition-all outline-none"
                       />
                       <button
                         type="button"
-                        onMouseDown={(e) => {
+                        onMouseDown={(e: React.MouseEvent) => {
                           e.preventDefault();
                           setShowPassword(!showPassword);
                         }}
