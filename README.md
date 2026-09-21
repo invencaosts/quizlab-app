@@ -1,55 +1,79 @@
-# QuizLab IF - Frontend
+<p>README.md available in English. <a href="#quizlab-if---frontend---english-version">Go To!</a></p>
 
-Este é o repositório do frontend do **QuizLab IF**, uma plataforma de quizzes gamificados em tempo real desenvolvida para o Instituto Federal de Sergipe (IFS).
+<h1 align="center">QuizLab IF - Frontend</h1>
 
-## 🚀 Sobre o Projeto
+<p align="center">
+Aplicação web do QuizLab IF, uma plataforma de quizzes gamificados em tempo real desenvolvida para o Instituto Federal de Sergipe (IFS).
+</p>
 
-O **QuizLab IF** tem como objetivo proporcionar uma experiência interativa e gamificada para professores e alunos da Rede Federal. O projeto foca em:
+<p align="center">
+  <a href="#-tecnologias">Tecnologias</a> |
+  <a href="#-projeto">Projeto</a> |
+  <a href="#-licença">Licença</a>
+</p>
+<br>
 
-- **Tempo Real:** Interatividade instantânea durante os quizzes.
-- **Gamificação:** Estilo "Kahoot" para engajamento dos alunos.
-- **Escalabilidade:** Funciona perfeitamente em dispositivos móveis e desktops.
-- **Open-Source:** Código aberto para colaboração.
+## 🔧 Tecnologias
 
-Este repositório contém a aplicação web desenvolvida com **Next.js**. O backend (API) é desenvolvido separadamente em AdonisJS.
+Este projeto foi desenvolvido com:
+- Next.js
+- TailwindCSS
+- shadcn/ui
+- TypeScript
+- Socket.io
+- Git e GitHub
 
-## 🛠️ Stack Tecnológica
+## 📖 Projeto
 
-- **Framework:** Next.js (App Router)
-- **Estilização:** Tailwind CSS + shadcn/ui
-- **Linguagem:** TypeScript
-- **Comunicação:** WebSockets (Socket.io) e REST JSON
+O **QuizLab IF** oferece uma experiência interativa e gamificada, estilo "Kahoot", pra professores e alunos da Rede Federal. Tempo real na comunicação durante os quizzes, escalável em dispositivos móveis e desktop.
 
-## 🎨 Identidade Visual (Padrão IFS)
+Este repositório é a aplicação web em Next.js; o backend (API) é desenvolvido separadamente em AdonisJS, em [`invencaosts/quizlab-api`](https://github.com/invencaosts/quizlab-api).
 
-O projeto segue as cores oficiais do IFS:
-- **Verde Principal:** `#32A041`
-- **Vermelho Destaque:** `#C8191E`
+## 🔐 Licença
+
+Este projeto está disponível sob licença MIT.
+
+---
+
+Desenvolvido por:
+- [Guilherme da Invenção](https://github.com/invencaosts)
 
 ---
 
-## 🚦 Iniciando o Desenvolvimento
+<h1 align="center">QuizLab IF - Frontend - English Version</h1>
 
-Primeiro, instale as dependências:
+<p align="center">
+The web app for QuizLab IF, a real-time gamified quiz platform built for the Federal Institute of Sergipe (IFS).
+</p>
 
-```bash
-npm install
-```
+<p align="center">
+  <a href="#-technologies">Technologies</a> |
+  <a href="#-project">Project</a> |
+  <a href="#-license">License</a>
+</p>
+<br>
 
-Em seguida, inicie o servidor de desenvolvimento:
+## 🔧 Technologies
 
-```bash
-npm run dev
-```
+This project was developed with:
+- Next.js
+- TailwindCSS
+- shadcn/ui
+- TypeScript
+- Socket.io
+- Git and GitHub
 
-Abra [http://localhost:3000](http://localhost:3000) no seu navegador para ver o resultado.
+## 📖 Project
 
-Você pode começar a editar a página modificando o arquivo `app/page.tsx`. A página será atualizada automaticamente conforme você edita.
+**QuizLab IF** delivers a "Kahoot"-style interactive, gamified experience for teachers and students across the Federal Network. Real-time communication during quizzes, scalable across mobile and desktop devices.
 
-## 🏗️ Estrutura do Projeto
+This repository is the Next.js web app; the backend (API) is developed separately in AdonisJS, at [`invencaosts/quizlab-api`](https://github.com/invencaosts/quizlab-api).
 
-O QuizLab é dividido em dois repositórios principais:
-- `/quizlab-api` -> Backend AdonisJS.
-- `/quizlab-app` -> Frontend Next.js (este repositório).
+## 🔐 License
+
+This project is available under the MIT license.
 
 ---
+
+Developed By:
+- [Guilherme da Invenção](https://github.com/invencaosts)
